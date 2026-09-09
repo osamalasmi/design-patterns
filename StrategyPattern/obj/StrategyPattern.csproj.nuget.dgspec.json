@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Users/osama/Downloads/StrategyPattern/StrategyPattern.csproj": {}
+    "/Users/osama/Developer/year4/design-patterns/StrategyPattern/StrategyPattern.csproj": {}
   },
   "projects": {
-    "/Users/osama/Downloads/StrategyPattern/StrategyPattern.csproj": {
+    "/Users/osama/Developer/year4/design-patterns/StrategyPattern/StrategyPattern.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/osama/Downloads/StrategyPattern/StrategyPattern.csproj",
+        "projectUniqueName": "/Users/osama/Developer/year4/design-patterns/StrategyPattern/StrategyPattern.csproj",
         "projectName": "StrategyPattern",
-        "projectPath": "/Users/osama/Downloads/StrategyPattern/StrategyPattern.csproj",
+        "projectPath": "/Users/osama/Developer/year4/design-patterns/StrategyPattern/StrategyPattern.csproj",
         "packagesPath": "/Users/osama/.nuget/packages/",
-        "outputPath": "/Users/osama/Downloads/StrategyPattern/obj/",
+        "outputPath": "/Users/osama/Developer/year4/design-patterns/StrategyPattern/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/osama/.nuget/NuGet/NuGet.Config"
