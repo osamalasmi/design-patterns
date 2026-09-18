@@ -8,7 +8,7 @@ namespace NoDesignPatternsBetaalmethode
 {
     internal class BetaalProcessor
     {
-        protected IBetaalMethode iBetaalMethode;
+        protected IBetaalMethode iBetaalMethode = null!;
 
         public void Betalen(decimal bedrag, string kaartGegevens)
         {
