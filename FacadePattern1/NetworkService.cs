@@ -1,0 +1,25 @@
+﻿namespace GameApp
+{
+    public class NetworkService
+    {
+        public void Connect()
+        {
+            Console.WriteLine("Verbonden met gameserver.");
+        }
+
+        public void Login()
+        {
+            Console.WriteLine("Speler ingelogd.");
+        }
+
+        public void Disconnect()
+        {
+            Console.WriteLine("Verbinding met gameserver verbroken.");
+        }
+
+        public void Logout()
+        {
+            Console.WriteLine("Speler uitgelogd.");
+        }
+    }
+}
