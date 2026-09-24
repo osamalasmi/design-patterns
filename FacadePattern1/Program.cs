@@ -4,28 +4,11 @@
     {
         static void Main(string[] args)
         {
-            GraphicsSystem graphics = new GraphicsSystem();
-            AudioSystem audio = new AudioSystem();
-            SaveSystem saveSystem = new SaveSystem();
-            NetworkService network = new NetworkService();
-            GameEngine gameEngine = new GameEngine();
-            GameMode gameMode = new GameMode(new DeveloperMode());
-            gameMode.Mode();
+            StartStopGame startStopGame = new StartStopGame(new NormalMode());
 
-            graphics.Initialize();
-            graphics.SetResolution(1920, 1080);
+            startStopGame.StartGame();
 
-            audio.Initialize();
-            audio.SetVolume(70);
-
-            saveSystem.LoadSettings();
-            saveSystem.LoadPlayer();
-
-            network.Connect();
-            network.Login();
-
-            gameEngine.LoadWorld();
-            gameEngine.Start();
+            startStopGame.StopGame();
 
             Console.ReadLine();
         }
