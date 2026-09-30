@@ -24,6 +24,21 @@
             // pushService.Send("student123",
             //     "Er staat nieuwe feedback voor je klaar.");
 
+            INotificationService notification = new LoggedEmailNotificationService();
+
+            notification.Send(
+                "student@school.nl",
+                "Je rooster is gewijzigd."
+            );
+
+            INotificationService smsNotification = new LoggedSmsNotificationService();
+
+            smsNotification.Send(
+                "0612341235123",
+                "Je telefoon is gewijzigd."
+            );
+
+
 
             Console.ReadLine();
         }
