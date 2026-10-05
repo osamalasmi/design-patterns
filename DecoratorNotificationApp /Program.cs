@@ -4,93 +4,116 @@
     {
         static void Main(string[] args)
         {
-            // NotificationManager smsService = new NotificationManager();
-            // smsService.SetNotificationService(new SmsNotificationService());
-            // smsService.Send("0612345678",
-            //     "Je les begint over 15 minuten.");
+            // Opdracht 1 - Beginsituatie
+            Kop("Opdracht 1 - Beginsituatie");
+            INotificationService basis = new EmailNotificationService();
+            basis.Send("student@school.nl", "Je rooster is gewijzigd.");
 
+            // Opdracht 2 - Logging met inheritance
+            Kop("Opdracht 2 - Logging met inheritance");
+            INotificationService loggedEmail = new LoggedEmailNotificationService();
+            loggedEmail.Send("student@school.nl", "Je rooster is gewijzigd.");
 
-            // NotificationManager pushService = new NotificationManager();
-            // pushService.SetNotificationService(new PushNotificationService());
-            // pushService.Send("student123",
-            //     "Er staat nieuwe feedback voor je klaar.");
+            INotificationService loggedSms = new LoggedSmsNotificationService();
+            loggedSms.Send("0612345678", "Je rooster is gewijzigd.");
 
-            // INotificationService notification = new LoggedEmailNotificationService();
+            // Opdracht 3 - Urgent met inheritance
+            Kop("Opdracht 3 - Urgent met inheritance");
+            INotificationService urgentEmail = new UrgentEmailNotificationService();
+            urgentEmail.Send("student@school.nl", "Je rooster is gewijzigd.");
 
-            // notification.Send(
-            //     "student@school.nl",
-            //     "Je rooster is gewijzigd."
-            // );
+            INotificationService urgentSms = new UrgentSmsNotificationService();
+            urgentSms.Send("0612345678", "Je rooster is gewijzigd.");
 
-            // INotificationService smsNotification = new LoggedSmsNotificationService();
+            // Opdracht 6 - LoggingNotificationDecorator
+            Kop("Opdracht 6 - LoggingNotificationDecorator");
+            INotificationService loggingEmail = new EmailNotificationService();
+            loggingEmail = new LoggingNotificationDecorator(loggingEmail);
+            loggingEmail.Send("student@school.nl", "Je rooster is gewijzigd.");
 
-            // smsNotification.Send(
-            //     "0612341235123",
-            //     "Je telefoon is gewijzigd."
-            // );
+            INotificationService loggingSms = new SmsNotificationService();
+            loggingSms = new LoggingNotificationDecorator(loggingSms);
+            loggingSms.Send("0612345678", "Je rooster is gewijzigd.");
 
-            // INotificationService urgentNotification = new UrgentEmailNotificationService();
+            // Opdracht 7 - UrgentNotificationDecorator
+            Kop("Opdracht 7 - UrgentNotificationDecorator");
+            INotificationService urgentDecorator =
+                new UrgentNotificationDecorator(
+                    new EmailNotificationService()
+                );
+            urgentDecorator.Send("student@school.nl", "Je leslokaal is gewijzigd.");
 
-            // urgentNotification.Send(
-            //     "student@school.nl",
-            //     "Je rooster is gewijzigd."
-            // );
+            // Opdracht 8 - Decorators combineren
+            Kop("Opdracht 8 - Decorators combineren");
+            INotificationService gecombineerd =
+                new LoggingNotificationDecorator(
+                    new UrgentNotificationDecorator(
+                        new EmailNotificationService()
+                    )
+                );
+            gecombineerd.Send("student@school.nl", "Je rooster is gewijzigd.");
 
-            // INotificationService urgentSmsNotification = new UrgentSmsNotificationService();
+            // Opdracht 9 - Maakt de volgorde uit?
+            Kop("Opdracht 9 - Variant A (Logging -> Urgent -> Email)");
+            INotificationService variantA =
+                new LoggingNotificationDecorator(
+                    new UrgentNotificationDecorator(
+                        new EmailNotificationService()
+                    )
+                );
+            variantA.Send("student@school.nl", "Nieuwe melding.");
 
-            // urgentSmsNotification.Send(
-            //     "061324513241",
-            //     "Je rooster is gewijzigd."
-            // );
-
-
-            // INotificationService emailNotification = new EmailNotificationService();
-            // emailNotification = new LoggingNotificationDecorator(emailNotification);
-            // emailNotification.Send("student@school.nl", "Nieuwe melding.");
-
-
-            // INotificationService smsNotification = new SmsNotificationService();
-            // smsNotification = new UrgentNotificationDecorator(smsNotification);
-            // smsNotification.Send("06139213947", "Nieuwe melding sms.");
-
-
-            INotificationService notification =
-    new LoggingNotificationDecorator(
-        new UrgentNotificationDecorator(
-            new EmailNotificationService()
-        )
-    );
-
-            notification.Send("student@school.nl", "Nieuwe melding.");
-
-            INotificationService notification2 =
+            Kop("Opdracht 9 - Variant B (Urgent -> Logging -> Email)");
+            INotificationService variantB =
                 new UrgentNotificationDecorator(
                     new LoggingNotificationDecorator(
                         new EmailNotificationService()
                     )
                 );
+            variantB.Send("student@school.nl", "Nieuwe melding.");
 
-            notification2.Send("student@school.nl", "Nieuwe melding.");
-
-            INotificationService timeStamp = new LoggingNotificationDecorator(
-                new TimestampNotificationDecorator(
-                    new UrgentNotificationDecorator(
-                        new SmsNotificationService()
+            // Opdracht 10 - TimestampNotificationDecorator
+            Kop("Opdracht 10 - Logging -> Timestamp -> Urgent -> Email");
+            INotificationService timestampEmail =
+                new LoggingNotificationDecorator(
+                    new TimestampNotificationDecorator(
+                        new UrgentNotificationDecorator(
+                            new EmailNotificationService()
+                        )
                     )
-                )
-            );
+                );
+            timestampEmail.Send("student@school.nl", "Je rooster is gewijzigd.");
 
-            timeStamp.Send("student@school.nl", "Je rooster is gewijzigd.");
+            Kop("Opdracht 10 - Logging -> Timestamp -> Urgent -> SMS");
+            INotificationService timestampSms =
+                new LoggingNotificationDecorator(
+                    new TimestampNotificationDecorator(
+                        new UrgentNotificationDecorator(
+                            new SmsNotificationService()
+                        )
+                    )
+                );
+            timestampSms.Send("0612345678", "Je rooster is gewijzigd.");
 
-            INotificationService smsNoti = new UrgentNotificationDecorator(
-                new TimestampNotificationDecorator(
-                    new LoggingNotificationDecorator(new SmsNotificationService())
-                )
-            );
-
-            smsNoti.Send("0612341234512", "Eindopdracht notification");
+            // Opdracht 16 - Eindopdracht
+            Kop("Opdracht 16 - Eindopdracht (SMS, urgent, timestamp, gelogd)");
+            INotificationService eindopdracht =
+                new UrgentNotificationDecorator(
+                    new TimestampNotificationDecorator(
+                        new LoggingNotificationDecorator(
+                            new SmsNotificationService()
+                        )
+                    )
+                );
+            eindopdracht.Send("0612345678", "Eindopdracht notification");
 
             Console.ReadLine();
+        }
+
+        // Print een kopje zodat je in de output ziet welke opdracht het is
+        static void Kop(string titel)
+        {
+            Console.WriteLine($"===== {titel} =====");
         }
     }
 }
