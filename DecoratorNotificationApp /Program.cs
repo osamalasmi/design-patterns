@@ -82,6 +82,13 @@
 
             timeStamp.Send("student@school.nl", "Je rooster is gewijzigd.");
 
+            INotificationService smsNoti = new UrgentNotificationDecorator(
+                new TimestampNotificationDecorator(
+                    new LoggingNotificationDecorator(new SmsNotificationService())
+                )
+            );
+
+            smsNoti.Send("0612341234512", "Eindopdracht notification");
 
             Console.ReadLine();
         }
