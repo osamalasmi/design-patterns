@@ -2,11 +2,11 @@ namespace GameApp
 {
     internal class GameFacade
     {
-        GraphicsSystem graphics = new GraphicsSystem();
-        AudioSystem audio = new AudioSystem();
-        SaveSystem saveSystem = new SaveSystem();
-        NetworkService network = new NetworkService();
-        GameEngine gameEngine = new GameEngine();
+        private GraphicsSystem graphics = new GraphicsSystem();
+        private AudioSystem audio = new AudioSystem();
+        private SaveSystem saveSystem = new SaveSystem();
+        private NetworkService network = new NetworkService();
+        private GameEngine gameEngine = new GameEngine();
 
         private bool isOnline;
         private GameBehavior gameBehavior;
