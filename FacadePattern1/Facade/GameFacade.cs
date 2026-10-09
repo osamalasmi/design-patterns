@@ -1,25 +1,26 @@
 namespace GameApp
 {
-    internal class StartStopGame
+    internal class GameFacade
     {
         GraphicsSystem graphics = new GraphicsSystem();
         AudioSystem audio = new AudioSystem();
         SaveSystem saveSystem = new SaveSystem();
         NetworkService network = new NetworkService();
         GameEngine gameEngine = new GameEngine();
-        private bool isOnline;
-        private GameMode gameMode;
 
-        public StartStopGame(GameBehavior gameBehavior, bool isOnline)
+        private bool isOnline;
+        private GameBehavior gameBehavior;
+
+        public GameFacade(GameBehavior gameBehavior, bool isOnline)
         {
-            gameMode = new GameMode(gameBehavior);
+            this.gameBehavior = gameBehavior;
             this.isOnline = isOnline;
         }
 
         public void StartGame()
         {
             Console.WriteLine("\n \n StartGame...");
-            gameMode.Mode();
+            gameBehavior.Mode();
 
             graphics.Initialize();
             graphics.SetResolution(1920, 1080);
