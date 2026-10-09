@@ -7,15 +7,18 @@ namespace GameApp
         SaveSystem saveSystem = new SaveSystem();
         NetworkService network = new NetworkService();
         GameEngine gameEngine = new GameEngine();
+        private bool isOnline;
         private GameMode gameMode;
 
-        public StartStopGame(GameBehavior gameBehavior)
+        public StartStopGame(GameBehavior gameBehavior, bool isOnline)
         {
             gameMode = new GameMode(gameBehavior);
+            this.isOnline = isOnline;
         }
 
         public void StartGame()
         {
+            Console.WriteLine("\n \n StartGame...");
             gameMode.Mode();
 
             graphics.Initialize();
@@ -27,8 +30,11 @@ namespace GameApp
             saveSystem.LoadSettings();
             saveSystem.LoadPlayer();
 
-            network.Connect();
-            network.Login();
+            if (isOnline)
+            {
+                network.Connect();
+                network.Login();   
+            }
 
             gameEngine.LoadWorld();
             gameEngine.Start();
@@ -36,13 +42,16 @@ namespace GameApp
 
         public void StopGame()
         {
-            Console.WriteLine("\n \nShutdown...");
+            Console.WriteLine("\n \n Shutdown...");
             graphics.Shutdown();
             audio.Shutdown();
             saveSystem.SavePlayer();
             saveSystem.SaveSettings();
-            network.Disconnect();
-            network.Logout();
+            if (isOnline)
+            {
+                network.Logout();
+                network.Disconnect();   
+            }
             gameEngine.UnloadWorld();
             gameEngine.Stop();
         }
