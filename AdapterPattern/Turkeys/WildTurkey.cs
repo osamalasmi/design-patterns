@@ -11,12 +11,12 @@ namespace AdapterPattern.Turkeys
     {
         public void Fly()
         {
-            Console.WriteLine("Gobble gobble");
+            Console.WriteLine("I'm flying a short distance");
         }
 
         public void Gobble()
         {
-            Console.WriteLine("I'm flying a short distance");
+            Console.WriteLine("Gobble gobble");
         }
     }
 }

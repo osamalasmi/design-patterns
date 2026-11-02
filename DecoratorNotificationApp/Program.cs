@@ -78,7 +78,7 @@
                 new LoggingNotificationDecorator(
                     new TimestampNotificationDecorator(
                         new UrgentNotificationDecorator(
-                            new EmailNotificationService()
+                            new SmsNotificationService()
                         )
                     )
                 );
