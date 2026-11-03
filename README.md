@@ -13,6 +13,7 @@ Uitgewerkte design pattern opdrachten in C#, geschreven voor mijn opleiding Soft
 | `DecoratorNotificationApp` | Decorator | Notificaties uitbreiden met extra gedrag via decorators |
 | `FacadePattern` | Facade | `HomeTheaterFacade` met `WatchMovie` en `EndMovie` |
 | `FacadePattern1` | Facade | `GameFacade` voor subsystemen als audio, graphics en netwerk (zie `FacadePatternReflection.md`) |
+| `Singleton` | Singleton | Thread-safe `ChocolateBoiler` met double checked locking |
 | `FactoryNotificationApp` | Factory | Notificatiefactory met vaste combinaties (in ontwikkeling) |
 | `NotificationApp` | - | Basisproject met losse notificatieservices (email, sms, push, WhatsApp) |
 
